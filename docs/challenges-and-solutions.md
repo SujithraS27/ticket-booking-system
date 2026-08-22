@@ -415,3 +415,50 @@ tsc --noEmit exits 0; vite build succeeds.
 ### Lesson Learned
 Keep build-tool config files out of the application tsconfig program, or give them a dedicated
 node-flavoured tsconfig project reference.
+
+---
+
+## 14. Production frontend returned 404 because API requests used relative /api URLs
+
+### Challenge
+After deploying the frontend to Vercel and the backend to Render, the live frontend showed
+"Request failed (404)" on every API call and failed to connect via Socket.IO, even though the
+backend's /api/health endpoint worked when called directly.
+
+### Problem
+rontend/src/api.ts used etch('/api') and rontend/src/socket.ts used io('/').
+These are **relative** URLs that only resolve correctly through the Vite development proxy
+(ite.config.ts forwards /api and /socket.io to http://localhost:5000). In production,
+Vercel serves the static SPA at its own origin, so /api resolved to
+https://ticket-booking-system-frontend-seven.vercel.app/api — a 404 on Vercel's static host.
+The backend's real URL (https://ticket-booking-system-mpdm.onrender.com) was ignored.
+
+### Investigation
+- Confirmed the backend was reachable directly: curl https://ticket-booking-system-mpdm.onrender.com/api/health returned {"status":"ok",...}.
+- Opened browser DevTools on the live Vercel frontend ? Network tab showed requests going to https://ticket-booking-system-frontend-seven.vercel.app/api/... (wrong origin) and receiving 404.
+- Verified VITE_API_URL was already set in the Vercel project environment to https://ticket-booking-system-mpdm.onrender.com.
+- Confirmed ite.config.ts only configures a dev-server proxy (no production proxying on Vercel).
+
+### Root Cause
+The frontend API client and Socket.IO client had no production-aware logic to use VITE_API_URL.
+They relied entirely on Vite's dev proxy, which does not exist in the Vercel-hosted production build.
+
+### Solution
+Made a minimal change to two frontend files (no application-logic change):
+
+1. **rontend/src/api.ts**: Added a BASE_URL constant derived from import.meta.env.VITE_API_URL || ''. The etch call changed from etch('/api') to etch('/api', ...). When VITE_API_URL is empty (local dev), this produces a relative /api URL routed through the Vite proxy (unchanged local behavior). When set (production), it produces the full https://ticket-booking-system-mpdm.onrender.com/api/... URL.
+
+2. **rontend/src/socket.ts**: Changed io('/') to io(BASE_URL, ...) using the same VITE_API_URL constant. Empty string = connect to current origin (proxy forwards in dev); the Render URL = direct cross-origin WebSocket connection in production.
+
+3. **rontend/tsconfig.json**: Added "types": ["vite/client"] so that 	sc --noEmit (the first step in 
+pm run build) recognises import.meta.env.VITE_* properties. This is a standard Vite type-configuration, not application logic.
+
+### Verification
+- 
+px tsc --noEmit exits 0.
+- 
+pm run build succeeds: 	sc --noEmit && vite build produces dist/ with no errors (239 kB JS, 76 kB gzipped).
+- Built JS confirmed to contain the Render URL when built with VITE_API_URL=https://ticket-booking-system-mpdm.onrender.com: constant "https://ticket-booking-system-mpdm.onrender.com" found in minified JS output. When built without the variable, it bakes in an empty string (fallback to relative /api, preserving local-dev behavior).
+
+### Lesson Learned
+Production deployments of Vite frontends always need an explicit VITE_API_URL consumed by the API client. Relative /api calls only work through a dev proxy; never assume Vercel/Nginx-style rewrite rules unless explicitly configured. Wire import.meta.env.VITE_* into the client at build time and type-check it with ite/client types.

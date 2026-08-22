@@ -4,10 +4,14 @@ import type { Seat } from './types';
 
 let socket: Socket | null = null;
 
+// Empty string = same-origin (Vite dev proxy forwards /socket.io to the
+// backend). In production VITE_API_URL points at the deployed backend.
+const BASE_URL = import.meta.env.VITE_API_URL || '';
+
 /** Lazily connects the Socket.IO client (proxied by Vite in dev). */
 export function getSocket(): Socket {
   if (!socket) {
-    socket = io('/', { transports: ['websocket', 'polling'] });
+    socket = io(BASE_URL, { transports: ['websocket', 'polling'] });
   }
   return socket;
 }

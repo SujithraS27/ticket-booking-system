@@ -2,6 +2,11 @@ import type { SeatCategory } from './types';
 
 const TOKEN_KEY = 'tbs.token';
 
+// In development the Vite dev-server proxies /api and /socket.io to the
+// backend, so VITE_API_URL is empty and we use a relative base. In production
+// VITE_API_URL points at the deployed backend (e.g. Render).
+const BASE_URL = import.meta.env.VITE_API_URL || '';
+
 export function getToken(): string | null {
   return localStorage.getItem(TOKEN_KEY);
 }
@@ -28,7 +33,7 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
   if (token) headers.Authorization = `Bearer ${token}`;
   if (body !== undefined) headers['Content-Type'] = 'application/json';
 
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${BASE_URL}/api${path}`, {
     method,
     headers,
     body: body === undefined ? undefined : JSON.stringify(body),
@@ -114,3 +119,4 @@ export const endpoints = {
       totals: { shows: number; revenueCents: number; ticketsSold: number; bookingsCount: number };
     }>('/organiser/stats'),
 };
+

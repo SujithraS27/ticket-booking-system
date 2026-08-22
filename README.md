@@ -7,6 +7,16 @@ cancellation, and QR-code tickets delivered by email.
 
 > Built from the requirements in `Ticket_Booking_System (2).pdf`.
 
+## Live Application
+
+| | |
+|---|---|
+| **Frontend** | https://ticket-booking-system-frontend-seven.vercel.app |
+| **Backend** | https://ticket-booking-system-mpdm.onrender.com |
+| **Health** | https://ticket-booking-system-mpdm.onrender.com/api/health |
+
+**Deployment architecture:** Frontend (Vercel, static SPA) → Backend (Render, Node.js/Express) → Neon PostgreSQL. Real-time updates via Socket.IO (WebSocket) over the same backend.
+
 | | |
 |---|---|
 | Backend | Node.js 20 · Express · TypeScript · Socket.IO · Prisma |
@@ -368,7 +378,7 @@ See .env.example and backend/.env.example:
 | EMAIL_FROM | Ticket Booking <tickets@example.com> | from header |
 | FRONTEND_URL | http://localhost:5173 | used in offer links |
 | CORS_ORIGINS | http://localhost:5173 | allowed browser origins |
-| VITE_API_URL / VITE_SOCKET_URL | empty | frontend: same-origin proxy by default |
+| VITE_API_URL | https://ticket-booking-system-mpdm.onrender.com (prod) | frontend: API + Socket.IO base URL (empty = Vite dev proxy in local dev) |
 
 ## 24. Deployment
 
@@ -464,7 +474,7 @@ Actual results from the final verification run (see DEVELOPMENT_LOG.md):
 | TTL enforced via scheduler/database, not frontend | done |
 | API docs, DB schema, setup guide, .env.example | done (docs/) |
 | System design write-up (<=800 words) | done (docs/system-design.md, 692 words) |
-| Hosted application URL | see docs/deployment-guide.md (requires external account authorisation) |
+| Hosted application URL | **Frontend**: https://ticket-booking-system-frontend-seven.vercel.app · **Backend**: https://ticket-booking-system-mpdm.onrender.com |
 
 ## Challenges faced and how I resolved them
 

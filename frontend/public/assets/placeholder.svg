@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <defs>
+    <linearGradient id="phGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="600" fill="url(#phGrad)"/>
+  <rect x="60" y="120" width="280" height="360" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="200" y="300" font-family="Arial, sans-serif" font-size="16" fill="#64748b" text-anchor="middle">Event image</text>
+  <text x="200" y="325" font-family="Arial, sans-serif" font-size="12" fill="#475569" text-anchor="middle">Loading...</text>
+</svg>

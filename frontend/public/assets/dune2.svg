@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <defs>
+    <linearGradient id="duneGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7c2d12"/>
+      <stop offset="40%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="400" height="600" fill="url(#duneGrad)"/>
+  <circle cx="280" cy="120" r="60" fill="#f59e0b" opacity="0.3" filter="url(#glow)"/>
+  <circle cx="120" cy="480" r="80" fill="#f59e0b" opacity="0.15"/>
+  <path d="M200,200 Q300,150 350,250 Q300,350 200,400 Q100,350 50,250 Q100,150 200,200 Z" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.4"/>
+  <rect x="20" y="40" width="360" height="540" rx="20" fill="rgba(0,0,0,0.35)"/>
+  <rect x="40" y="80" width="320" height="460" rx="16" fill="rgba(0,0,0,0.6)"/>
+  <text x="200" y="130" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#f59e0b" text-anchor="middle" letter-spacing="2">MOVIE</text>
+  <text x="200" y="200" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="3">DUNE</text>
+  <text x="200" y="245" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#f59e0b" text-anchor="middle" letter-spacing="3">PART TWO</text>
+  <text x="200" y="310" font-family="Arial, sans-serif" font-size="16" fill="#cbd5e1" text-anchor="middle">A sci-fi epic by Denis Villeneuve</text>
+  <text x="200" y="500" font-family="Arial, sans-serif" font-size="13" fill="#94a3b8" text-anchor="middle">Starring Timothée Chalamet · Zendaya</text>
+  <text x="360" y="560" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="end">2h 6m · 2024</text>
+</svg>

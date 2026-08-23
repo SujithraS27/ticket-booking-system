@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { endpoints, getToken } from '../api';
+import { posterUrl } from '../lib/images';
 import type { OfferInfo } from '../types';
 import { formatDateTime, money } from '../types';
 
@@ -44,15 +45,54 @@ export function OfferPage() {
   }
 
   if (result) {
+    const title = offer?.show.title ?? 'Event';
     return (
-      <main className="mx-auto max-w-md px-4 py-16 text-center">
-        <h1 className="mb-4 text-2xl font-bold text-emerald-400">Seat confirmed! 🎉</h1>
-        <img src={result.qrDataUrl} alt="QR ticket" className="mx-auto mb-4 rounded-lg border border-slate-700" />
-        <p className="font-mono text-indigo-300">{result.reference}</p>
-        <p className="mt-2 text-slate-400">Seats: {result.seats.join(', ')}</p>
-        <Link to="/bookings" className="mt-6 inline-block rounded-md bg-indigo-600 px-5 py-2 font-semibold hover:bg-indigo-500">
-          View my bookings
-        </Link>
+      <main className="mx-auto max-w-md px-4 py-12">
+        <h1 className="mb-6 text-center text-2xl font-extrabold text-emerald-400">Seat confirmed! 🎉</h1>
+
+        {/* Digital ticket */}
+        <div className="overflow-hidden rounded-2xl border border-slate-700 bg-gradient-to-br from-slate-900 to-slate-950 shadow-2xl">
+          {/* header w/ poster */}
+          <div
+            className="relative h-32 w-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${posterUrl(title)})` }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/55 to-slate-950/20" />
+            <div className="absolute bottom-2 left-4 right-4">
+              <h2 className="text-xl font-extrabold text-white drop-shadow">{title}</h2>
+              {offer && (
+                <p className="text-xs text-slate-300">
+                  {offer.show.venue.name}, {offer.show.venue.city}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* body */}
+          <div className="flex flex-col items-center gap-4 p-5">
+            <div className="text-center">
+              <p className="text-[10px] uppercase tracking-widest text-slate-500">Booking reference</p>
+              <p className="font-mono text-sm font-semibold text-indigo-300">{result.reference}</p>
+            </div>
+            {offer && (
+              <p className="text-sm text-slate-400">{formatDateTime(offer.show.startsAt)}</p>
+            )}
+            <p className="text-sm font-semibold text-white">Seats: {result.seats.join(', ')}</p>
+            <div className="rounded-xl bg-white p-3 shadow-lg">
+              <img src={result.qrDataUrl} alt="QR ticket" width={140} height={140} className="h-32 w-32" />
+            </div>
+            <p className="text-[10px] uppercase tracking-widest text-slate-500">Show this at the entrance</p>
+          </div>
+        </div>
+
+        <div className="mt-6 text-center">
+          <Link
+            to="/bookings"
+            className="inline-block rounded-xl bg-indigo-600 px-6 py-2.5 font-semibold text-white shadow-lg shadow-indigo-600/25 transition hover:bg-indigo-500"
+          >
+            View my bookings
+          </Link>
+        </div>
       </main>
     );
   }

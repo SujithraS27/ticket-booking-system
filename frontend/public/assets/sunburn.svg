@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <defs>
+    <linearGradient id="sunGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="30%" stop-color="#ea580c"/>
+      <stop offset="60%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="600" fill="url(#sunGrad)"/>
+  <circle cx="180" cy="160" r="50" fill="#f59e0b" opacity="0.25"/>
+  <circle cx="300" cy="200" r="30" fill="#fbbf24" opacity="0.2"/>
+  <rect x="40" y="260" width="320" height="60" rx="30" fill="rgba(255,255,255,0.05)"/>
+  <rect x="40" y="280" width="320" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
+  <rect x="40" y="305" width="220" y2="305" width="220" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
+  <rect x="40" y="325" width="280" height="8" rx="4" fill="rgba(255,255,255,0.08)"/>
+  <path d="M120,380 Q200,360 280,390" stroke="rgba(255,255,255,0.15)" stroke-width="2" fill="none"/>
+  <path d="M120,410 Q200,395 280,425" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="none"/>
+  <text x="200" y="110" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fbbf24" text-anchor="middle" letter-spacing="3">CONCERT</text>
+  <text x="200" y="170" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="3">SUNBURN</text>
+  <text x="200" y="205" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#fbbf24" text-anchor="middle" letter-spacing="2">UNPLUGGED</text>
+  <text x="200" y="240" font-family="Arial, sans-serif" font-size="15" fill="#e2e8f0" text-anchor="middle">An intimate acoustic festival</text>
+  <text x="200" y="520" font-family="Arial, sans-serif" font-size="13" fill="#cbd5e1" text-anchor="middle">Live · Skyline Amphitheatre</text>
+  <text x="360" y="570" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="end">Chennai · Aug 30</text>
+</svg>

@@ -71,6 +71,8 @@ export const endpoints = {
     const qs = new URLSearchParams(params).toString();
     return api.get<{ shows: import('./types').ShowSummary[] }>(`/shows${qs ? `?${qs}` : ''}`);
   },
+  showDetail: (showId: string) =>
+    api.get<{ show: import('./types').ShowDetail }>(`/shows/${showId}`),
   seatMap: (showId: string) => api.get<SeatMapResponse>(`/shows/${showId}/seats/map`),
   holdSeats: (showId: string, seatIds: string[]) =>
     api.post<{ showId: string; expiresAt: string; seats: unknown[] }>(`/shows/${showId}/seats/holds`, { seatIds }),
@@ -119,4 +121,5 @@ export const endpoints = {
       totals: { shows: number; revenueCents: number; ticketsSold: number; bookingsCount: number };
     }>('/organiser/stats'),
 };
+
 

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <defs>
+    <linearGradient id="oppGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <filter id="glow2"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="400" height="600" fill="url(#oppGrad)"/>
+  <circle cx="200" cy="260" r="55" fill="none" stroke="#facc15" stroke-width="3" opacity="0.5" filter="url(#glow2)"/>
+  <circle cx="200" cy="260" r="20" fill="#facc15" opacity="0.8"/>
+  <line x1="200" y1="100" x2="200" y2="420" stroke="#334159" stroke-width="1" opacity="0.6"/>
+  <rect x="20" y="40" width="360" height="540" rx="20" fill="rgba(15,23,42,0.7)"/>
+  <rect x="40" y="80" width="320" height="460" rx="16" fill="rgba(2,6,23,0.8)"/>
+  <text x="200" y="130" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#facc15" text-anchor="middle" letter-spacing="2">MOVIE</text>
+  <text x="200" y="210" font-family="Arial, sans-serif" font-size="46" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="4">OPPENHEIMER</text>
+  <text x="200" y="260" font-family="Arial, sans-serif" font-size="13" fill="#cbd5e1" text-anchor="middle">The biography of the atomic bomb</text>
+  <text x="200" y="500" font-family="Arial, sans-serif" font-size="13" fill="#94a3b8" text-anchor="middle">Starring Cillian Murphy · Florence Pugh</text>
+  <text x="360" y="560" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="end">3h · 2023</text>
+</svg>

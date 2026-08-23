@@ -37,6 +37,18 @@ export interface ShowSummary {
   stats: { available: number; held: number; booked: number; offered: number };
 }
 
+/** Full show detail returned by GET /api/shows/:id */
+export interface ShowDetail {
+  id: string;
+  title: string;
+  type: 'MOVIE' | 'CONCERT';
+  description?: string | null;
+  startsAt: string;
+  venue: { id: string; name: string; city: string };
+  organizer: { id: string; name: string; email: string };
+  pricing: Array<{ category: SeatCategory; priceCents: number }>;
+}
+
 export interface Booking {
   id: string;
   reference: string;

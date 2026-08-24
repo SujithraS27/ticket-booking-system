@@ -35,7 +35,8 @@ export function HomePage() {
   const nowShowingCat = catalog.filter((m) => m.section === 'NOW_SHOWING');
   const comingWeek = catalog.filter((m) => m.section === 'COMING_THIS_WEEK');
   const septRel = catalog.filter((m) => m.section === 'SEPTEMBER_RELEASES');
-  const recentFilms = [...catalog.filter((m) => m.section === 'RECENTLY_IN_THEATRES'), ...INDIAN_CINEMA_CLASSICS];
+  const trending = catalog.filter((m) => m.section === 'RECENTLY_IN_THEATRES');
+  const classics = INDIAN_CINEMA_CLASSICS;
 
   const hindiCat = catalog.filter((m) => /hindi/i.test(m.language));
   const tamilCat = catalog.filter((m) => /tamil/i.test(m.language));
@@ -121,10 +122,11 @@ export function HomePage() {
       )}
 
       <div className="mx-auto max-w-7xl px-4">
-        {nowShowingCat.length > 0 && (<Rail title="Now Showing in Theatres"><PosterGrid movies={nowShowingCat} /></Rail>)}
+        {nowShowingCat.length > 0 && (<Rail title="In Cinemas Now"><PosterGrid movies={nowShowingCat} /></Rail>)}
         {comingWeek.length > 0 && (<Rail title="Coming This Week"><PosterGrid movies={comingWeek} /></Rail>)}
         {septRel.length > 0 && (<Rail title="September Releases"><PosterGrid movies={septRel} /></Rail>)}
-                {recentFilms.length > 0 && (<Rail title="Recently in Theatres"><PosterGrid movies={recentFilms} /></Rail>)}
+                {trending.length > 0 && (<Rail title="Trending Indian Cinema"><PosterGrid movies={trending} /></Rail>)}
+        {classics.length > 0 && (<Rail title="Acclaimed Indian Cinema"><PosterGrid movies={classics} /></Rail>)}
         {hindiCat.length > 0 && (<Rail title="Hindi Cinema"><PosterGrid movies={hindiCat} /></Rail>)}
         {tamilCat.length > 0 && (<Rail title="Tamil Cinema"><PosterGrid movies={tamilCat} /></Rail>)}
         {teluguCat.length > 0 && (<Rail title="Telugu Cinema"><PosterGrid movies={teluguCat} /></Rail>)}
@@ -199,7 +201,11 @@ function PosterGrid({ movies }: { movies: CatalogMovie[] }) {
                 {movie.section === 'NOW_SHOWING' ? 'Now Showing' : movie.section === 'COMING_THIS_WEEK' ? 'Coming This Week' : movie.section === 'SEPTEMBER_RELEASES' ? 'September' : 'Recently Released'}
               </span>
               <h3 className="mt-1 text-xs font-bold text-white">{movie.title}</h3>
-              <p className="text-xs text-slate-300">{movie.year} · {movie.language}</p>
+              <p className="truncate text-[10px] text-slate-400">{movie.genre}</p>
+              <p className="text-[10px] text-slate-300">{movie.year} · {movie.language}</p>
+            </div>
+            <div className="absolute inset-0 flex items-center justify-center bg-indigo-950/70 opacity-0 transition duration-300 group-hover:opacity-100">
+              <span className="rounded-full bg-indigo-600 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white">View Details</span>
             </div>
           </div>
         </Link>

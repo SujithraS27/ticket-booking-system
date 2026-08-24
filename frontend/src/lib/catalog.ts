@@ -20,6 +20,12 @@ export interface CatalogMovie {
   certification: string | null;
   /** Omitted when not verified. */
   runtime?: string;
+  /** Verified director, when known. */
+  director?: string;
+  /** Verified principal cast, when known. */
+  cast?: string[];
+  /** Verified theatrical runtime in minutes. */
+  runtimeMinutes?: number;
   overview?: string;
   backdropUrl?: string;
   posterUrl: string;
@@ -35,6 +41,8 @@ export const NOW_SHOWING: CatalogMovie[] = [
     language: 'English · Hindi · Tamil · Telugu',
     genre: 'Action · Adventure · Sci-Fi',
         slug: 'spider-man-brand-new-day',
+    director: 'Destin Daniel Cretton',
+    cast: ['Tom Holland'],
     certification: null,
     overview: 'A brand-new chapter in the Spider-Man franchise, bringing a high-octane superhero adventure to theatres across India.',
     posterUrl:
@@ -52,6 +60,8 @@ export const COMING_THIS_WEEK: CatalogMovie[] = [
     language: 'Kannada · Hindi · Telugu · Tamil',
     genre: 'Action · Crime · Drama',
         slug: 'toxic',
+    director: 'Geetu Mohandas',
+    cast: ['Yash', 'Kiara Advani'],
     certification: 'A',
     overview: 'A stylised pan-Indian action drama built around a crime family and its high-octane power play — one of the year’s most anticipated releases.',
     posterUrl:
@@ -78,7 +88,6 @@ export const COMING_THIS_WEEK: CatalogMovie[] = [
 export const COMING_SOON: CatalogMovie[] = [];
 
 /* ---- Confirmed September 2026 releases ---- */
-/* ---- Confirmed September 2026 releases ---- */
 export const SEPTEMBER_RELEASES: CatalogMovie[] = [
   {
     title: 'Sardar 2',
@@ -86,6 +95,8 @@ export const SEPTEMBER_RELEASES: CatalogMovie[] = [
     language: 'Tamil · Telugu · Hindi',
     genre: 'Action · Spy Thriller',
         slug: 'sardar-2',
+    director: 'P. S. Mithran',
+    cast: ['Karthi'],
     certification: 'U/A',
     overview: 'The Tamil blockbuster spy saga returns, with the original lead back on the mission and a much bigger worldwide canvas.',
     posterUrl:
@@ -99,6 +110,7 @@ export const SEPTEMBER_RELEASES: CatalogMovie[] = [
     language: 'Hindi',
     genre: 'Thriller',
         slug: 'vvan-force-of-the-forest',
+    cast: ['Sidharth Malhotra'],
     certification: 'U/A',
     overview: 'A forest-set survival thriller that pits a lone man against the wild — a Hindi-language adventure.',
     posterUrl:
@@ -116,6 +128,9 @@ export const RECENTLY_IN_THEATRES: CatalogMovie[] = [
     language: 'Tamil · Telugu · Hindi · Kannada',
     genre: 'Action · Crime · Thriller',
         slug: 'coolie',
+    director: 'Lokesh Kanagaraj',
+    cast: ['Rajinikanth', 'Nagarjuna Akkineni', 'Upendra', 'Shruti Haasan'],
+    runtimeMinutes: 168,
     certification: 'A',
     overview: 'A high-energy Tamil action picture built around a commanding central performance.',
     posterUrl:
@@ -129,6 +144,9 @@ export const RECENTLY_IN_THEATRES: CatalogMovie[] = [
     language: 'Hindi · Telugu · Tamil',
     genre: 'Action · Thriller',
         slug: 'war-2',
+    director: 'Ayan Mukerji',
+    cast: ['Hrithik Roshan', 'N. T. Rama Rao Jr.', 'Kiara Advani'],
+    runtimeMinutes: 173,
     certification: 'A',
     overview: 'The action-spy franchise returns with a new high-stakes mission.',
     posterUrl:
@@ -146,6 +164,8 @@ export const INDIAN_CINEMA_CLASSICS: CatalogMovie[] = [
     language: 'Malayalam',
     genre: 'Action · Fantasy',
         slug: 'lokah-chapter-one-chandra',
+    director: 'Dominic Arun',
+    cast: ['Kalyani Priyadarshan', 'Naslen'],
     certification: 'U/A',
     overview: 'A Malayalam action-fantasy that opens a sweeping new cinematic universe.',
     posterUrl:
@@ -159,6 +179,9 @@ export const INDIAN_CINEMA_CLASSICS: CatalogMovie[] = [
     language: 'Kannada · Hindi · English',
     genre: 'Action · Thriller',
         slug: 'kantara-a-legend-chapter-1',
+    director: 'Rishab Shetty',
+    cast: ['Rishab Shetty', 'Rukmini Vasanth'],
+    runtimeMinutes: 148,
     certification: 'U/A',
     overview: 'The folk-epic universe expands in this prequel set in a coastal fiefdom.',
     posterUrl:
@@ -172,6 +195,9 @@ export const INDIAN_CINEMA_CLASSICS: CatalogMovie[] = [
     language: 'Tamil',
     genre: 'Action · Crime · Thriller',
         slug: 'maharaja',
+    director: 'Nithilan Swaminathan',
+    cast: ['Vijay Sethupathi', 'Anurag Kashyap', 'Mamta Mohandas'],
+    runtimeMinutes: 141,
     certification: 'A',
     overview: 'A gripping Tamil crime-drama driven by a towering central performance.',
     posterUrl:
@@ -185,6 +211,9 @@ export const INDIAN_CINEMA_CLASSICS: CatalogMovie[] = [
     language: 'Tamil',
     genre: 'Action · Biography · Drama',
         slug: 'amaran',
+    director: 'Rajkumar Periasamy',
+    cast: ['Sivakarthikeyan', 'Sai Pallavi', 'Bhuvan Arora'],
+    runtimeMinutes: 166,
     certification: 'U/A',
     overview: 'A patriotic biographical action-drama honouring a soldier’s story.',
     posterUrl:
@@ -198,6 +227,9 @@ export const INDIAN_CINEMA_CLASSICS: CatalogMovie[] = [
     language: 'Telugu',
     genre: 'Action · Adventure · Drama',
         slug: 'devara-part-1',
+    director: 'Koratala Siva',
+    cast: ['N. T. Rama Rao Jr.', 'Saif Ali Khan', 'Janhvi Kapoor'],
+    runtimeMinutes: 178,
     certification: 'A',
     overview: 'A large-scale Telugu period action adventure built around honour and revenge.',
     posterUrl:
@@ -211,6 +243,9 @@ export const INDIAN_CINEMA_CLASSICS: CatalogMovie[] = [
     language: 'Tamil',
     genre: 'Action · Crime · Drama',
         slug: 'vettaiyan',
+    director: 'T. J. Gnanavel',
+    cast: ['Rajinikanth', 'Amitabh Bachchan', 'Fahadh Faasil', 'Rana Daggubati'],
+    runtimeMinutes: 160,
     certification: 'U/A',
     overview: 'A Tamil action drama about a maverick officer taking on a corrupt system.',
     posterUrl:
@@ -233,6 +268,14 @@ export function movieStatus(m: CatalogMovie): string {
     default:
       return m.section;
   }
+}
+
+/** Formats a runtime in minutes as e.g. "2h 21m"; undefined when unverified. */
+export function formatRuntime(minutes?: number): string | undefined {
+  if (!minutes || minutes <= 0) return undefined;
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  return h > 0 ? `${h}h ${m}m` : `${m}m`;
 }
 
 /** Every discovery entry, for one slug lookup table. */

@@ -14,7 +14,7 @@ const MOVIE_POSTERS: Array<{ match: RegExp; url: string }> = [
   },
   {
     match: /oppenheimer/i,
-    url: 'https://m.media-amazon.com/images/M/MV5BN2JkMDc5MGQtZjg3YS00NmFiLWIyZmwtZTJmNTM5MjVmYTQ4XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg',
+    url: 'https://m.media-amazon.com/images/M/MV5BN2JkMDc5MGQtZjg3YS00NmFiLWIyZmQtZTJmNTM5MjVmYTQ4XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg',
   },
   {
     match: /everything.*everywhere/i,

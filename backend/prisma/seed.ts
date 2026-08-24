@@ -87,11 +87,11 @@ async function main() {
     return show;
   }
 
-  const m1 = await provisionShow({ organizerId: org1.id, venueId: grandRex.id, title: 'Dune: Part Two', type: ShowType.MOVIE, startsAt: dayAfter(3, 19), premiumCents: 2500, standardCents: 1200 });
-  await provisionShow({ organizerId: org1.id, venueId: novaPlex.id, title: 'Oppenheimer IMAX', type: ShowType.MOVIE, startsAt: dayAfter(5, 18), premiumCents: 3000, standardCents: 1500 });
-  await provisionShow({ organizerId: org2.id, venueId: skyline.id, title: 'Sunburn Unplugged', type: ShowType.CONCERT, startsAt: dayAfter(7, 20), premiumCents: 4500, standardCents: 2200 });
-  await provisionShow({ organizerId: org2.id, venueId: grandRex.id, title: 'The Jazz Collective Live', type: ShowType.CONCERT, startsAt: dayAfter(12, 21), premiumCents: 3500, standardCents: 1800 });
-  await provisionShow({ organizerId: org1.id, venueId: novaPlex.id, title: 'Everything Everywhere: All At Once', type: ShowType.MOVIE, startsAt: dayAfter(15, 17), premiumCents: 2000, standardCents: 1000 });
+  const m1 = await provisionShow({ organizerId: org1.id, venueId: grandRex.id, title: 'Dune: Part Two', type: ShowType.MOVIE, startsAt: dayAfter(3, 19), premiumCents: 29900, standardCents: 19900 });
+  await provisionShow({ organizerId: org1.id, venueId: novaPlex.id, title: 'Oppenheimer IMAX', type: ShowType.MOVIE, startsAt: dayAfter(5, 18), premiumCents: 39900, standardCents: 24900 });
+  await provisionShow({ organizerId: org2.id, venueId: skyline.id, title: 'Sunburn Unplugged', type: ShowType.CONCERT, startsAt: dayAfter(7, 20), premiumCents: 149900, standardCents: 79900 });
+  await provisionShow({ organizerId: org2.id, venueId: grandRex.id, title: 'The Jazz Collective Live', type: ShowType.CONCERT, startsAt: dayAfter(12, 21), premiumCents: 99900, standardCents: 69900 });
+  await provisionShow({ organizerId: org1.id, venueId: novaPlex.id, title: 'Everything Everywhere: All At Once', type: ShowType.MOVIE, startsAt: dayAfter(15, 17), premiumCents: 29900, standardCents: 19900 });
 // One sample confirmed booking so the seat map + revenue dashboards look realistic.
   const sampleSeats = await prisma.showSeat.findMany({
     where: { showId: m1.id },

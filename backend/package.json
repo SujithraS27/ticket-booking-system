@@ -14,6 +14,7 @@
     "db:push": "prisma db push",
     "db:reset": "prisma migrate reset --force",
     "db:seed": "tsx prisma/seed.ts",
+    "db:update-prices": "tsx scripts/update-prices.ts",
     "prisma:generate": "prisma generate"
   },
   "prisma": {

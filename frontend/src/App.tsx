@@ -5,6 +5,7 @@ import { Protected } from './components/Protected';
 import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
+import { MovieDetailPage } from './pages/MovieDetailPage';
 import { ShowDetailPage } from './pages/ShowDetailPage';
 import { MyBookingsPage } from './pages/MyBookingsPage';
 import { OfferPage } from './pages/OfferPage';
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/movies/:slug" element={<MovieDetailPage />} />
             <Route path="/shows/:id" element={<ShowDetailPage />} />
             <Route
               path="/bookings"

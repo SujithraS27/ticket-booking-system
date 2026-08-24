@@ -93,7 +93,9 @@ export interface Venue {
 }
 
 export function money(cents: number): string {
-  return `₹${(cents / 100).toFixed(2)}`;
+  const value = cents / 100;
+  const text = Number.isInteger(value) ? value.toFixed(0) : value.toFixed(2);
+  return `\u20B9${text}`;
 }
 
 export function formatDateTime(iso: string): string {

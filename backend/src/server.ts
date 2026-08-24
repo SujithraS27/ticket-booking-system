@@ -3,6 +3,8 @@ import { Server, Socket } from 'socket.io';
 import { config } from './config';
 import { createApp } from './app';
 import { eventBus, type SeatUpdate, type ShowStatsUpdate } from './lib/events';
+import { prisma } from './lib/prisma';
+import { applyRealisticPrices } from './lib/updatePrices';
 import { startScheduler } from './services/scheduler.service';
 
 /**
@@ -42,6 +44,20 @@ export async function bootstrap() {
   const app = createApp();
   const httpServer = http.createServer(app);
   createSocketServer(httpServer);
+
+  // Idempotent startup price sync — applies realistic 2026 ticket prices
+  // to the connected database (e.g. the deployed Neon database) BEFORE the
+  // server starts serving traffic. Runs against the same DATABASE_URL the
+  // app uses, every boot, so deployments self-heal to the canonical prices.
+  // Skips only in tests and can be explicitly disabled via DISABLE_PRICE_UPDATE=1.
+  if (process.env.NODE_ENV !== 'test' && process.env.DISABLE_PRICE_UPDATE !== '1') {
+    try {
+      const touched = await applyRealisticPrices(prisma);
+      console.log(`[prices] startup price sync complete (${touched} rows touched)`);
+    } catch (err) {
+      console.warn('[prices] startup price sync skipped:', (err as Error).message);
+    }
+  }
 
   startScheduler();
 

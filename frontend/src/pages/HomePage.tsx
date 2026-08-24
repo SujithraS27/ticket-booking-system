@@ -94,9 +94,14 @@ export function HomePage() {
               <h1 className="max-w-2xl text-4xl font-black leading-tight text-white sm:text-6xl">{heroMovie.title}</h1>
               <p className="mt-2 text-sm text-slate-300">{heroMovie.genre}</p>
               {heroShow && <p className="mt-1 text-sm text-slate-400">{heroShow.venue.name} · {heroShow.venue.city} · {formatDateTime(heroShow.startsAt)}</p>}
-              {heroShow && (
+              {heroShow ? (
                 <Link to={`/shows/${heroShow.id}`} className="mt-5 inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-8 py-3.5 text-sm font-bold text-white shadow-2xl shadow-indigo-600/40 transition hover:-translate-y-0.5 hover:bg-indigo-500">
                   Book Tickets
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </Link>
+              ) : (
+                <Link to={`/movies/${heroMovie.slug}`} className="mt-5 inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-8 py-3.5 text-sm font-bold text-white shadow-2xl shadow-indigo-600/40 transition hover:-translate-y-0.5 hover:bg-indigo-500">
+                  View Details
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                 </Link>
               )}
@@ -185,7 +190,7 @@ function PosterGrid({ movies }: { movies: CatalogMovie[] }) {
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
       {movies.map((movie) => (
-        <Link key={movie.title} to="/shows" className="block group">
+        <Link key={movie.title} to={`/movies/${movie.slug}`} className="block group">
           <div className="relative aspect-[2/3] overflow-hidden rounded-lg shadow-lg ring-1 ring-slate-800/50 transition-all duration-300 group-hover:-translate-y-1 group-hover:ring-indigo-500/30">
             <img src={movie.posterUrl} alt={movie.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" onError={(e) => { (e.target as HTMLImageElement).src = '/assets/placeholder.svg'; }} />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />

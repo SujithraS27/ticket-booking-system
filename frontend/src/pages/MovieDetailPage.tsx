@@ -10,7 +10,16 @@ type Tone = 'live' | 'soon' | 'past';
 
 /** Status is derived from REAL data: backend show first, then release date. */
 function resolveStatus(m: { releaseDate: string }, bookable: boolean): { label: string; tone: Tone; caption: string } {
-  if (bookable) return { label: 'Now Showing', tone: 'live', caption: '' };
+  if (bookable) {
+    const rd = new Date(m.releaseDate).getTime();
+    const now = Date.now();
+    if (rd <= now) {
+      // Released movie with current/upcoming shows → Now Showing
+      return { label: 'Now Showing', tone: 'live', caption: '' };
+    }
+    // Unreleased movie with future pre-booking shows → Pre-Booking Open
+    return { label: 'Pre-Booking Open', tone: 'soon', caption: 'Pre-booking is open for upcoming shows.' };
+  }
   const rd = new Date(m.releaseDate).getTime();
   const now = Date.now();
   if (rd > now) {

@@ -84,8 +84,25 @@ export const COMING_THIS_WEEK: CatalogMovie[] = [
   },
 ];
 
-/* ---- Unconfirmed upcoming releases (none verified at the moment) ---- */
-export const COMING_SOON: CatalogMovie[] = [];
+/* ---- Far-future releases (no backend show yet — pure catalogue entries) ---- */
+export const COMING_SOON: CatalogMovie[] = [
+  {
+    title: 'Thug Life',
+    year: 2026,
+    language: 'Tamil · Hindi',
+    genre: 'Crime · Action',
+    slug: 'thug-life',
+    director: 'Mani Ratnam',
+    cast: ['Dhanush', 'Simbu', 'Aishwarya Lekshmi'],
+    runtimeMinutes: 158,
+    certification: 'A',
+    overview: 'A high-stakes heist saga from acclaimed filmmaker Mani Ratnam, bringing together an ensemble cast for one last job.',
+    posterUrl:
+      'https://m.media-amazon.com/images/M/MV5BOTYwYzYxMWYtZmI4MS00ZGRhLWEyMGEtZTdiODc3YjAyNDE0XkEyXkFqcGc@._V1_QL75_UY562_CR15,0,380,562_.jpg',
+    section: 'COMING_SOON',
+    releaseDate: 'Oct 15, 2026',
+  },
+];
 
 /* ---- Confirmed September 2026 releases ---- */
 export const SEPTEMBER_RELEASES: CatalogMovie[] = [
@@ -122,6 +139,22 @@ export const SEPTEMBER_RELEASES: CatalogMovie[] = [
 
 /* ---- Notable recent Indian theatrical releases ---- */
 export const RECENTLY_IN_THEATRES: CatalogMovie[] = [
+  {
+    title: 'Dune: Part Two',
+    year: 2024,
+    language: 'English',
+    genre: 'Sci-Fi · Adventure · Drama',
+    slug: 'dune-part-two',
+    director: 'Denis Villeneuve',
+    cast: ['Timothée Chalamet', 'Zendaya', 'Rebecca Ferguson', 'Josh Brolin'],
+    runtimeMinutes: 166,
+    certification: 'PG-13',
+    overview: 'The epic saga of Paul Atreides continues as he unites with the Fremen people of Arrakis while plotting revenge against the conspirators who destroyed his house.',
+    posterUrl:
+      'https://m.media-amazon.com/images/M/MV5BNTc0YmQxMjEtODI5MC00NjFiLTlkMWUtOGQ5NjFmYWUyZGJhXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg',
+    section: 'RECENTLY_IN_THEATRES',
+    releaseDate: 'Mar 1, 2024',
+  },
   {
     title: 'Coolie',
     year: 2025,

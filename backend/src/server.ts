@@ -5,6 +5,7 @@ import { createApp } from './app';
 import { eventBus, type SeatUpdate, type ShowStatsUpdate } from './lib/events';
 import { prisma } from './lib/prisma';
 import { applyRealisticPrices } from './lib/updatePrices';
+import { syncDemoShowData } from './lib/demoShows';
 import { startScheduler } from './services/scheduler.service';
 
 /**
@@ -56,6 +57,11 @@ export async function bootstrap() {
       console.log(`[prices] startup price sync complete (${touched} rows touched)`);
     } catch (err) {
       console.warn('[prices] startup price sync skipped:', (err as Error).message);
+    }
+    try {
+      await syncDemoShowData(prisma);
+    } catch (err) {
+      console.warn('[demo] show data sync skipped:', (err as Error).message);
     }
   }
 

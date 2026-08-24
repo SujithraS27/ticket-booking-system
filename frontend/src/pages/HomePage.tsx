@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { endpoints } from '../api';
 import { posterUrl } from '../lib/images';
-import { NOW_SHOWING, COMING_THIS_WEEK, SEPTEMBER_RELEASES, RECENTLY_IN_THEATRES, INDIAN_CINEMA_CLASSICS, type CatalogMovie } from '../lib/catalog';
+import { NOW_SHOWING, COMING_THIS_WEEK, COMING_SOON, SEPTEMBER_RELEASES, RECENTLY_IN_THEATRES, INDIAN_CINEMA_CLASSICS, type CatalogMovie } from '../lib/catalog';
 import { formatDateTime, money, type ShowSummary } from '../types';
 
 export function HomePage() {
@@ -20,7 +20,7 @@ export function HomePage() {
     endpoints.listShows(p).then((r) => setShows(r.shows)).catch((e) => setError(e.message));
   }, [type, city, search]);
 
-  const all = useMemo(() => [...NOW_SHOWING, ...COMING_THIS_WEEK, ...SEPTEMBER_RELEASES, ...RECENTLY_IN_THEATRES, ...INDIAN_CINEMA_CLASSICS], []);
+    const all = useMemo(() => [...NOW_SHOWING, ...COMING_THIS_WEEK, ...SEPTEMBER_RELEASES, ...RECENTLY_IN_THEATRES, ...INDIAN_CINEMA_CLASSICS, ...COMING_SOON], []);
   const bookable = useMemo(() => shows.filter((s) =>
     (!search || s.title.toLowerCase().includes(search.toLowerCase())) &&
     (!type || s.type === type) && (!city || s.venue.city.toLowerCase().includes(city.toLowerCase()))
@@ -35,6 +35,7 @@ export function HomePage() {
   const nowShowingCat = catalog.filter((m) => m.section === 'NOW_SHOWING');
   const comingWeek = catalog.filter((m) => m.section === 'COMING_THIS_WEEK');
   const septRel = catalog.filter((m) => m.section === 'SEPTEMBER_RELEASES');
+  const comingSoon = catalog.filter((m) => m.section === 'COMING_SOON');
   const trending = catalog.filter((m) => m.section === 'RECENTLY_IN_THEATRES');
   const classics = INDIAN_CINEMA_CLASSICS;
 
@@ -124,6 +125,7 @@ export function HomePage() {
       <div className="mx-auto max-w-7xl px-4">
         {nowShowingCat.length > 0 && (<Rail title="In Cinemas Now"><PosterGrid movies={nowShowingCat} /></Rail>)}
         {comingWeek.length > 0 && (<Rail title="Coming This Week"><PosterGrid movies={comingWeek} /></Rail>)}
+                {comingSoon.length > 0 && (<Rail title="Coming Soon"><PosterGrid movies={comingSoon} /></Rail>)}
         {septRel.length > 0 && (<Rail title="September Releases"><PosterGrid movies={septRel} /></Rail>)}
                 {trending.length > 0 && (<Rail title="Trending Indian Cinema"><PosterGrid movies={trending} /></Rail>)}
         {classics.length > 0 && (<Rail title="Acclaimed Indian Cinema"><PosterGrid movies={classics} /></Rail>)}
